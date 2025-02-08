@@ -1,7 +1,7 @@
 'use client';
 
 import { useCart } from "../../../Context/Cartcontext";
-import { IoCartOutline } from "react-icons/io5";
+import { IoCartOutline } from 'react-icons/io5';
 
 interface AddToCartButtonProps {
     product : {
@@ -18,7 +18,7 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({ product }) => {
     return (
         <div className="w-[210px] h-[60px] bg-[#01919e] rounded-lg py-[15px] px-[25px] text-white flex gap-4 items-center transform duration-500  active:bg-[white] active:text-[#51bdc7f8]">
             <div className="w-[29px] h-[29px]">
-            <IoCartOutline />
+            <IoCartOutline/>
             </div>
             <button
             onClick={() => 

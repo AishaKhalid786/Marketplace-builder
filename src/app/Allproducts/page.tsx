@@ -150,7 +150,7 @@ const SanityData = () => {
               }
               className="w-6 h-6 cursor-pointer "
                >
-                <IoCartOutline />
+                <IoCartOutline/>
                 </div>
               </div>
             </div>

@@ -3,7 +3,6 @@
 import { useCart } from "../../../Context/Cartcontext";
 import Image from "next/image";
 import { RiDeleteBin6Line } from "react-icons/ri";
-import React, { useEffect, useState } from "react";
 
 export default function CartPage() {
   const { cart, removeFromCart, updateQuantity, clearCart } = useCart();
@@ -28,7 +27,7 @@ export default function CartPage() {
             onChange={(e) => updateQuantity(item.id, Number(e.target.value))}
           />
           <div  onClick= {() => removeFromCart(item.id)}>
-          <RiDeleteBin6Line />
+          <RiDeleteBin6Line/>
           </div>
           </div>
           

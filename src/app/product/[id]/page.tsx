@@ -27,11 +27,14 @@ type SanityData = {
   tags: string[];
 };
 
-export async function generatedstaticparams() {
-    const product = await client.fetch('*[_type == "products"]{id}');
-    return product.map ((product: {id: string }) => ({
-        id: product.id,
-    }));
+export async function generateStaticParams(): Promise<Array<{ id: string }>> {
+  const products = await client.fetch<{ id: string }[]>('*[_type == "products"]{id}');
+
+  if (!products) return []; // Handle cases where no data is returned
+
+  return products.map((product) => ({
+    id: product.id,
+  }));
 }
 
 

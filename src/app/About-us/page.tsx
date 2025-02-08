@@ -61,7 +61,7 @@ import Image from 'next/image';
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {features.map((feature, index) => (
             <div key={index} className="bg-[#F9F9F9] p-6 rounded shadow-md">
-                <p className='text-[#007580]'><MdLabelImportant /></p>
+                <p className='text-[#007580]'><MdLabelImportant/></p>
               <h4 className="text-[20px] font-normal text-[#007580] mb-2">{feature.title}</h4>
               <p className='text-[16px] font-normal text-[#007580]'>{feature.description}</p>
             </div>
