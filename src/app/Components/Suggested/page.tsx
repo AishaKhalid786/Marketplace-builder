@@ -19,8 +19,8 @@ type SuggestedProductProps = {
   }
 }
 
-export default function SuggestedProducts({ products }: { products: SuggestedProductProps[] }) {
-  if (products.length === 0) {
+export default function SuggestedProducts({ products }: { products?: SuggestedProductProps[] }) {
+  if (!products || products.length === 0) {
     return null
   }
 
@@ -32,7 +32,8 @@ export default function SuggestedProducts({ products }: { products: SuggestedPro
           <Link href={`/product/${product.id}`} key={product.id} className="group">
             <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
               <Image
-                src={urlFor(product.image).url() || "/placeholder.svg"}
+                src={product.image?.asset?._ref ? 
+                urlFor(product.image).url() : "/placeholder.svg"}
                 alt={product.title}
                 width={300}
                 height={300}
