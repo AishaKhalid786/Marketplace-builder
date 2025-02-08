@@ -27,33 +27,31 @@ type SanityData = {
   tags: string[];
 };
 
-export async function generateStaticParams(): Promise<Array<{ id: string }>> {
-  const products = await client.fetch<{ id: string }[]>('*[_type == "products"]{id}');
-
-  if (!products) return []; // Handle cases where no data is returned
-
-  return products.map((product) => ({
-    id: product.id,
+export async function generateStaticParams() {
+  const products = await client.fetch(`*[_type == "products"]{"id": _id}`);
+  return products.map((product: { _id: string }) => ({
+    id: product._id,
   }));
 }
 
-
-async function getProduct(id: string): Promise<SanityData> {
-  return client.fetch(
+async function getProduct(id: string): Promise<SanityData | null> {
+  if (!id) return null;
+  const product = await client.fetch(
     `*[_type == "products" && id == $id][0]{
-      id, 
+      "id": _id,
       title, 
       price, 
       priceWithoutDiscount, 
       badge, 
-      image, 
-      category->{_id, name}, 
+      "image": image.asset->, 
+      category->{"_id": _id, name}, 
       description, 
       inventory, 
       tags
     }`,
     { id }
   );
+  return product || null
 }
 
 
@@ -62,8 +60,8 @@ async function getSuggestedProducts(
   currentProductId: string
 ): Promise<SanityData[]> {
   return client.fetch(
-    `*[_type == "products" && category._ref == $categoryId && id != $currentProductId][0...4]{
-      id, 
+    `*[_type == "products" && category._ref == $categoryId && _id != $currentProductId][0...4]{
+      "id": _id, 
       title, 
       price, 
       image, 
