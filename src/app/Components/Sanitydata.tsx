@@ -78,7 +78,7 @@ const SanityData = () => {
               <Link
               href={`/product/${product.id}`} className="flex flex-col gap-[12px] items-center p-[20px] rounded-2xl">
               <Image
-                src={urlFor(product.image).url() || "/placeholder.svg"}
+                src={urlFor(product?.image).url() || "/placeholder.svg"}
                 alt={product.title}
                 width={310}
                 height={310}
@@ -103,7 +103,7 @@ const SanityData = () => {
                       title: product.title,
                       price: product.price,
                       quantity: 1,
-                      image: urlFor(product.image).url(),
+                      image: urlFor(product?.image).url(),
                     })
                   }
                   className="w-6 h-6 cursor-pointer "

@@ -96,7 +96,7 @@ export default async function ProductPage({ params,}: { params: { id: string };}
     
         <div>
           <Image
-            src={urlFor(product.image).url() || "/placeholder.svg"}
+            src={urlFor(product?.image).url() || "/placeholder.svg"}
             alt={product.title}
             width={600}
             height={600}
@@ -133,7 +133,7 @@ export default async function ProductPage({ params,}: { params: { id: string };}
                 id: product.id,
                 title: product.title,
                 price: product.price,
-                image: urlFor(product.image).url() || "/placeholder.svg",
+                image: urlFor(product?.image).url() || "/placeholder.svg",
               }}
               
             />
